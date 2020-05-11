@@ -1,0 +1,137 @@
+/* Body Elements */
+img {
+    max-width: 20%;
+    height: auto;
+  }
+body {
+    color: #17276d;
+    font-family: Arial, Helvetica, sans-serif;
+}
+form {
+    font-family: Arial, Helvetica, sans-serif;
+    justify-content: center;
+    align-content: center;
+    width: fit-content;
+}
+table {
+    font-family: Arial, Helvetica, sans-serif;
+    width: 100%;
+    border: 0;
+    padding: 0;
+}
+th {
+    background: #17276d;
+    color: #ffffff;
+    text-align: center;
+    padding: 0;
+}
+td {
+    text-align: center;
+    padding: 0;
+}
+tr:nth-child(even) {
+    background: #17276d18;
+}
+tr:nth-child(odd) {
+    background: #ffffff;
+    color: #17276d;
+}
+p {
+    color: #17276d;
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+}
+
+li {
+    color: #17276d;
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+}
+
+.nav {
+    background-image: linear-gradient( to right, #ebebebc9, #acb0d8c9);
+    color: #ffffff;
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+    padding: 1em;
+
+}
+h1 {
+    color: #2037a2;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    text-align: center;
+}
+h2 {
+    color: #2037a2;
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+}
+
+h3 {
+    color: #2037a2;
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+}
+
+/* Links */
+a:link {
+    font-family: Arial, Helvetica, sans-serif;
+    color: rgb(32, 64, 122);
+    text-decoration: none;
+}
+
+a:visited {
+    font-family: Arial, Helvetica, sans-serif;
+    color: rgb(32, 64, 122);
+}
+
+a:hover {
+    font-family: Arial, Helvetica, sans-serif;
+    color: rgb(45, 80, 165);
+    text-decoration: underline;
+}
+
+a:active {
+    font-family: Arial, Helvetica, sans-serif;
+    color: rgb(192, 39, 167);
+}
+
+/* Form Styling */
+input[type=text] {
+    font-family: Arial, Helvetica, sans-serif;
+    width: 50%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    border: 1px solid #2037a2;
+    display: block;
+  }
+input[type=text]:focus {
+    border: 1.5px solid #2037a2;
+  }
+textarea {
+    font-family: Arial, Helvetica, sans-serif;
+    padding: 12px 20px;
+    box-sizing: border-box;
+    border: 1px solid #2037a2;
+    resize: none;
+    display: block;
+}
+
+input[type=submit] {
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    width: 50%;
+    background-color: rgb(32, 64, 122);
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  input[type=submit]:hover {
+    background-color: rgb(45, 80, 165);
+  }
