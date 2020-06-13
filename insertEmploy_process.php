@@ -4,34 +4,18 @@
 
 	if(isset($_POST['s']))
 	{
-		$t  = $_POST['table'];
-		$en = $_POST['EmployeeNumber'];
+
 		$fn = $_POST['FirstName'];		
 		$ln = $_POST['LastName'];
 		$d  = $_POST['Department'];
 		$p  = $_POST['Position'];
 		$sup  = $_POST['Supervisor'];
 		$op = $_POST['OfficePhone'];
-		$em = $_POST['EmailAddress'];
+		$em = strtolower($_POST['EmailAddress']); //avoids case-sensitivity issues with email input
 		$pattern = "/\d{3}-\d{3}-\d{4}/";
-		
-		
-		if(empty($t))  // select table
-		{
-			echo "Please confirm the <b>table</b> from the drop-down. <br>";
-		}
-		
-		elseif(empty($en))  // enter EmployeeNumber
-		{
-			echo "Please enter <b>Employee ID</b> <br>";
-		}
-		
-		elseif(!is_numeric($en)) // only numbers
-		{
-			echo "<b>Employee ID</b> value can only contain numbers";
-		}
-		
-		elseif(empty($fn))  // enter FirstName
+		$pattern2 = "@wp.com";
+				
+		if (empty($fn))  // enter FirstName
 		{
 			echo "Please enter <b>First Name</b> <br>";
 		}
@@ -70,8 +54,7 @@
 		{
 			echo "<b>Office Phone Number</b> not in proper format. Must be entered in this format: 000-000-0000<br>";
 		}
-		
-		
+				
 		elseif(strlen($op)<12)   // check length <12 digit error >12 digit error
 		{
 			echo "Not enough digits in <b>Office Phone Number</b><br> ";
@@ -85,10 +68,82 @@
 		{
 			echo  "Invalid <b>E-Mail</b> format. Must follow user@domain.extension.<br>";
         }
+		elseif (!preg_match("/$pattern2$/",$em)) // email must end in @WP.com
+		{
+      		echo "$em address does not end in @WP.com.";
+        }	
 
         else {
-            echo "<p>Thank you, $fn $ln for submitting your form.</p><p> All your information was validated and the database has been updated.</p>";
-        }
+			echo "<p>Thank you, <b>$fn $ln</b> for submitting your form.</p>";
+		}
+
+		$DBConnect = @mysqli_connect('127.0.0.1:3306', 'root'); // ip of DB and credentials
+
+		if ($DBConnect === FALSE) // this will display MySQL errors if a connection cannot be made.
+			 echo "<p>Unable to connect to the database server.</p>". "<p>Error code " . mysqli_errno($DBConnect). ": " . mysqli_error($DBConnect) . "</p>";
+		else {
+			 $DBName = "wp"; 
+			 // SCHEMA name of db. if your Wedgewood Pacific DB is different, put that name here or the code will not work locally
+		 
+			 if (!@mysqli_select_db($DBConnect, $DBName))
+				  echo "<p>Cannot open the Wedgewood Pacific database schema! Is it called 'wp' on your host? </p>";
+			else {    
+		$TableName = "employee"; 
+          $col_0="EmployeeNumber"; 
+          $col_1="FirstName";
+          $col_2="LastName";
+          $col_3="Department";
+          $col_4="Position";
+          $col_5="Supervisor";
+          $col_6="OfficePhone";
+          $col_7="EmailAddress";
+
+		  
+		//Generate the HTML for the Table
+		$SQLstring = "INSERT INTO EMPLOYEE (FirstName, LastName, Department, Position, Supervisor, OfficePhone, EmailAddress)
+		VALUES('$fn', '$ln', '$d', '$p', '$sup', '$op', '$em')";
+
+		  $QueryResult = @mysqli_query($DBConnect, $SQLstring);
+		  
+		  $SQLstring = "SELECT * FROM employee ORDER BY EmployeeNumber DESC LIMIT 1;"; // will display the most recent addition
+
+		 $QueryResult = @mysqli_query($DBConnect, $SQLstring);
+          if (mysqli_num_rows($QueryResult) == 0)
+               echo "<p>There are no entries in the table $TableName.</p>"; 
+          else {
+               echo "<p> Here is the information you added to the $TableName database:</p>"; 
+               echo "<table><tr>"; //begin table 
+               echo "<th>$col_0</th>"; //these are the headers, match the # of cols in table 
+               echo "<th>$col_1</th>";
+               echo "<th>$col_2</th>"; 
+               echo "<th>$col_3</th>"; 
+               echo "<th>$col_4</th>"; 
+               echo "<th>$col_5</th>"; 
+               echo "<th>$col_6</th>"; 
+               echo "<th>$col_7</th>"; 
+
+               while ($Row = mysqli_fetch_assoc($QueryResult)) { //creates associative array of data
+                    echo "<tr>";
+                    echo "<td>{$Row[$col_0]}</td>"; // similar to above, match # of cols in table
+                    echo "<td>{$Row[$col_1]}</td>";
+                    echo "<td>{$Row[$col_2]}</td>";
+                    echo "<td>{$Row[$col_3]}</td>";
+                    echo "<td>{$Row[$col_4]}</td>";
+                    echo "<td>{$Row[$col_5]}</td>";
+                    echo "<td>{$Row[$col_6]}</td>";
+                    echo "<td>{$Row[$col_7]}</td>";
+                    echo "</tr>";
+				}
+            } mysqli_free_result($QueryResult); //Fetch rows from a result-set, then free the memory associated with the result:
     }
 
+	}
+
+}
 ?>
+</table>
+<br><br><br><br>
+<p> Click <b><a href="Employee-DB.php">here</a></b> to view the complete employee table.</p>
+
+</body>
+</html>

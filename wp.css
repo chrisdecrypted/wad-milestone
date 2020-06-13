@@ -46,6 +46,7 @@ li {
     color: #17276d;
     font-family: Arial, Helvetica, sans-serif;
     text-align: center;
+    list-style-type: none;
 }
 
 .nav {

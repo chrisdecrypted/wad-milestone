@@ -8,15 +8,15 @@
 <body>
 <?php include("header.php"); ?>
 
-<h3>View A Complete Table</h3>
+<h3>Select below to view a complete table.</h3>
 <p>
-<a href="Employee-DB.php">View the Employee Table</a>
+<a href="Employee-Table.php">View the Employee Table</a>
 </p>
 <p>
-<a href="Department-DB.php">View the Department Table</a>
+<a href="Department-Table.php">View the Department Table</a>
 </p>
 <p>
-<a href="Assignment-DB.php">View the Assignment Table</a>
+<a href="Assignment-Table.php">View the Assignment Table</a>
 </p>
 <p>
 <a href="Project-DB.php">View the Project Table</a>

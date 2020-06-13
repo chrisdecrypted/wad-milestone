@@ -11,33 +11,13 @@
 
 <h3>Add New Department</h3>
 
-<form action="insertDept_process.php" method="post" >
-
-	
-	Table Name:
-	<select id="table" name="Table">
-			<option></option>
-			<option value="Department">Department</option>
-	</select>
-	
-	<br>
-	<br>
-	
-	Department Name: <input type="char" name="DepartmentName">
-	<br>
-	<br>
-	Budget Code: <input type="char" name="BudgetCode">
-	<br>
-	<br>
-	Office Number: <input type="char" name="OfficeNumber">
-	<br>
-	<br>
-	Department Phone: <input type="text"  name="DepartmentPhone"> 
-	<br>
-	<br>
+<form action="insertDept_process.php" method="post">
+		Department Name: <input type="char" name="DepartmentName"><br><br>
+		Budget Code: <input type="char" name="BudgetCode"><br><br>
+		Office Number: <input type="char" name="OfficeNumber"><br><br>
+		Department Phone: <input type="char" name="DepartmentPhone"><br><br>
 	<input type="submit" name = "s" value="Submit">
-	
-	</form>		
+</form>		
 
 
 </body>

@@ -10,28 +10,25 @@
 
 <h3>Add New Employee</h3>
 
-
 <form action="insertEmploy_Process.php" method="post">
-	
-	Table Name:
-	<select id="Table" name="table">
-			<option></option>
-			<option value="Employee">Employee</option>
-	</select>
-	
-	<br>
-	<br>
-	
-	Employee Number: <input type="integer" name="EmployeeNumber">
-	<br>
-	<br>
 	First Name: <input type="char" name="FirstName">
 	<br>
 	<br>
 	Last Name: <input type="char" name="LastName">
 	<br>
 	<br>
-	Department: <input type="char" name="Department">
+	Department: 
+	<select type="text" name="Department">
+    <option></option>
+    <option value="Administration">Administration</option>
+    <option value="Legal">Legal</option>
+    <option value="Human Resources">Human Resources</option>
+    <option value="Finance">Finance</option>
+    <option value="Accounting">Accounting</option>
+    <option value="Sales and Marketing">Sales and Marketing</option>
+    <option value="InfoSystems">InfoSystems</option>
+    <option value="Production">Production</option>
+  </select>
 	<br>
 	<br>
 	Position: <input type="integer" name="Position">
